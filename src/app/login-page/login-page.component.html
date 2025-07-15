@@ -1,0 +1,46 @@
+<div class="account-page">
+  <div class="container">
+    <div class="row">
+      <!-- Left side image -->
+      <div class="col-2">
+        <img src="assets/images/image1.png" width="100%" />
+      </div>
+
+      <!-- Right side login box -->
+      <div class="col-2">
+        <div class="form-container">
+          <div class="form-btn">
+            <span (click)="toggleForm(true)" [ngClass]="{ active: isLogin }">Login</span>
+            <span (click)="toggleForm(false)" [ngClass]="{ active: !isLogin }">Register</span>
+            <hr id="Indicator" [style.transform]="isLogin ? 'translateX(0)' : 'translateX(100px)'">
+          </div>
+
+          <!-- Login Form -->
+          <form *ngIf="isLogin">
+            <input type="text" placeholder="Username" [(ngModel)]="Login.Email" name="email" required />
+            <input type="password" placeholder="Password" [(ngModel)]="Login.Password" name="password" required />
+            <button type="button" class="btn" (click)="onLogin()">Login</button>
+            <div class="remember-me">
+              <label>
+                <input type="checkbox"  name="remember-me" [(ngModel)]="rememberMe" />
+                <span>Remember Me</span>
+              </label>
+            </div>
+            <a href="#">forgot password</a>
+            <span *ngIf="loginerror" class="text-danger">{{ loginerror }}</span>
+          </form>
+
+          <!-- Register Form -->
+          <form *ngIf="!isLogin">
+            <input type="text" placeholder="Username" [(ngModel)]="user.username" name="username" required />
+            <input type="text" placeholder="Email" [(ngModel)]="user.email" name="email" required />
+            <input type="password" placeholder="Password" [(ngModel)]="user.password" name="password" required />
+            <button type="button" class="btn" (click)="register()">Register</button>
+            <span *ngIf="loginerror" class="text-danger">{{ loginerror }}</span>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

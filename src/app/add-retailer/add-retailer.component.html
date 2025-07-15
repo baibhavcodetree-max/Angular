@@ -1,0 +1,27 @@
+<div class="register-container">
+  <h2>Become a Seller on RedStore</h2>
+  <p class="text-muted">Click the button below to receive an OTP on your registered email.</p>
+
+  <!-- Button to send OTP -->
+  <button class="btn btn-primary" *ngIf="!showOtpInput && !otpVerified" (click)="sendOtp()">
+     Send OTP
+  </button>
+
+  <!-- OTP Input Section -->
+  <div *ngIf="showOtpInput" class="mt-4">
+    <p>Enter the OTP sent to your email:</p>
+    <input type="text" [(ngModel)]="Otp" class="form-control w-25 mx-auto mb-2" placeholder="Enter OTP" name="otp"/>
+    <button class="btn btn-success" (click)="verifyOtp()">Verify OTP</button>
+  </div>
+
+  <!-- Confirmation Section -->
+  <div *ngIf="otpVerified" class="mt-4">
+    <p>OTP Verified! Click below to confirm your registration as a seller.</p>
+      <button class="confirm-btn" (click)="registerAsRetailer()">
+        Confirm Registration
+      </button>
+  </div>
+
+  <!-- Error Message Section -->
+  <div *ngIf="message" class="alert alert-success mt-3">{{ message }}</div>
+</div>

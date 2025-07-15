@@ -1,0 +1,43 @@
+<div class="container mt-4">
+  <h2>Add New Product</h2>
+  <form (submit)="onSubmit()" class="row g-3">
+    <div class="col-md-6">
+      <label class="form-label">Product Name</label>
+      <input type="text" class="form-control" [(ngModel)]="name" name="name" required />
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Price</label>
+      <input type="number" class="form-control" [(ngModel)]="price" name="price" required />
+    </div>
+
+    <div class="col-12">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" [(ngModel)]="description" name="description"></textarea>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Category</label>
+      <select class="form-select" [(ngModel)]="categoryId" name="categoryId" required>
+        <option *ngFor="let cat of categories" [value]="cat.categoryId">{{ cat.name }}</option>
+      </select>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Availability</label>
+      <select class="form-select" [(ngModel)]="IsAvailable" name="isAvailable">
+        <option [value]="true">Available</option>
+        <option [value]="false">Unavailable</option>
+      </select>
+    </div>
+
+    <div class="col-md-12">
+      <label class="form-label">Images</label>
+      <input type="file" (change)="onFileChange($event)" multiple class="form-control" />
+    </div>
+
+    <div class="col-12">
+      <button class="btn btn-success">Add Product</button>
+    </div>
+  </form>
+</div>

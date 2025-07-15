@@ -1,0 +1,10 @@
+<div *ngIf="Product as p">
+  <img *ngIf="p.ProductImage?.length"
+       [src]="p.ProductImage?.[0]?.ImageUrl"
+       [alt]="p.name"
+       class="product-image">
+
+  <h2>{{ p.name }}</h2>
+  <p>{{ p.description }}</p>
+  <h4>₹{{ p.price }}</h4>
+</div>
