@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-    apiUrl: 'https://loginpageapi-production.up.railway.app', // Update this to your actual API URL
+    apiUrl: 'http://localhost:51373/api', // Update this to your actual API URL
 }
