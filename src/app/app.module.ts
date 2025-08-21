@@ -16,6 +16,7 @@ import { RetailerRegisterComponent } from './retailer-register/retailer-register
 import { SellerDashboardComponent } from './seller-dashboard/seller-dashboard.component';
 import { AddRetailerComponent } from './add-retailer/add-retailer.component';
 import { RetailerInterfaceComponent } from './retailer-interface/retailer-interface.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { RetailerInterfaceComponent } from './retailer-interface/retailer-interf
     RetailerRegisterComponent,
     SellerDashboardComponent,
     AddRetailerComponent,
-    RetailerInterfaceComponent
+    RetailerInterfaceComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,  

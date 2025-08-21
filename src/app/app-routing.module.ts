@@ -11,6 +11,7 @@ import { EditProductComponent } from './edit-product/edit-product.component';
 import { RetailerRegisterComponent } from './retailer-register/retailer-register.component';
 import { AddRetailerComponent } from './add-retailer/add-retailer.component';
 import { RetailerInterfaceComponent } from './retailer-interface/retailer-interface.component';
+import { ChatComponent } from './chat/chat.component';
 
 const routes: Routes = [
   {path:'products',component:ProductListComponent, canActivate: [AuthGuard]}, // Add AuthGuard here if needed
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: 'retailer-interface', component: RetailerInterfaceComponent, canActivate:[retailerGuard]}, // Assuming this is the retailer registration page
   {path: 'add-retailer', component: AddRetailerComponent, canActivate:[AuthGuard]}, // Assuming this is the retailer registration page
   {path: 'retailer-login', component: RetailerRegisterComponent, canActivate:[AuthGuard]}, // Assuming this is the retailer login page
+  {path: 'chat', component: ChatComponent, canActivate: [AuthGuard]}, // Add AuthGuard here if needed
   { path: '', redirectTo: 'login-page', pathMatch: 'full' }
 ];
 

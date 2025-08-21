@@ -1,50 +1,56 @@
 <header>
   <nav class="navbar">
-<!--------------------------------------------------------------------------------------------------------------------->
-    <div class="logo">
-      <img src="assets/images/logo.png" alt="Logo" width="125px">
-    </div>
-<!--------------------------------------------------------------------------------------------------------------------->
-    <ul class="navbar-links">
-      <li><a routerLink="/home">Home</a></li>
-      <li><a routerLink="/products">Products</a></li>
-      <li><a href="">About</a></li>
-      <li><a href="">Contact</a></li>
-      <li class="nav-item dropdown" (mouseenter)="showDropdown = true" (mouseleave)="showDropdown = false">
-          <a class="nav-link dropdown-toggle" href="#" role="button">
-            Account & Lists
+  <!--------------------------------------------------------------------------------------------------------------------->
+      <div class="logo">
+        <img src="assets/images/logo.png" alt="Logo" width="125px">
+      </div>
+  <!--------------------------------------------------------------------------------------------------------------------->
+      <ul class="navbar-links">
+        <li><a routerLink="/home">Home</a></li>
+        <li><a routerLink="/products">Products</a></li>
+        <li><a href="">About</a></li>
+        <li><a href="">Contact</a></li>
+        <li class="nav-item dropdown" (mouseenter)="showDropdown = true" (mouseleave)="showDropdown = false">
+            <a class="nav-link dropdown-toggle" href="#" role="button">
+              Account & Lists
+            </a>
+    
+          <div class="dropdown-menu show-on-hover" *ngIf="showDropdown">
+
+            <div class="dropdown-section">
+              <h6>Your Lists</h6>
+              <a class="dropdown-item" routerLink="/wishlist">Your Wish List</a><br/>
+              <a class="dropdown-item" routerLink="/products">Shopping List</a>
+            </div>
+
+            <hr />
+
+            <div class="dropdown-section">
+              <h6>Your Account</h6>
+              <a class="dropdown-item" routerLink="/orders">Your Orders</a><br/>
+              <a class="dropdown-item" routerLink="/account">Your Account</a><br/>
+              <a class="dropdown-item" routerLink="/subscriptions">Subscriptions</a><br/>
+              <a class="dropdown-item" *ngIf="isRetailer" routerLink="/retailer-interface">Your Seller Account</a>
+              <a class="dropdown-item" *ngIf="!isRetailer" routerLink="/retailer-login">Register as Seller</a>
+            </div>
+
+          </div>
+        </li>
+        <li>
+          <a routerLink="/chat">
+            <img src="assets/images/chat.jpg" alt="Chat" height="30px">
           </a>
-  
-        <div class="dropdown-menu show-on-hover" *ngIf="showDropdown">
-
-          <div class="dropdown-section">
-            <h6>Your Lists</h6>
-            <a class="dropdown-item" routerLink="/wishlist">Your Wish List</a><br/>
-            <a class="dropdown-item" routerLink="/products">Shopping List</a>
-          </div>
-
-          <hr />
-
-          <div class="dropdown-section">
-            <h6>Your Account</h6>
-            <a class="dropdown-item" routerLink="/orders">Your Orders</a><br/>
-            <a class="dropdown-item" routerLink="/account">Your Account</a><br/>
-            <a class="dropdown-item" routerLink="/subscriptions">Subscriptions</a><br/>
-            <a class="dropdown-item" *ngIf="isRetailer" routerLink="/retailer-interface">Your Seller Account</a>
-            <a class="dropdown-item" *ngIf="!isRetailer" routerLink="/retailer-login">Register as Seller</a>
-          </div>
-
-        </div>
-      </li>
-
-      <li><a routerLink="/cart">
-        <img src="assets/images/cart.png" alt="Cart" height="30px">
-      </a></li>
-      <li>
-        <button class="logout-btn" (click)="onLogOut()">Logout</button>
-      </li>
-    </ul>
-<!--------------------------------------------------------------------------------------------------------------------->
+        </li> 
+        <li>
+          <a routerLink="/cart">
+             <img src="assets/images/cart.png" alt="Cart" height="30px">
+          </a>
+        </li>
+        <li>
+          <button class="logout-btn" (click)="onLogOut()">Logout</button>
+        </li>
+      </ul>
+  <!--------------------------------------------------------------------------------------------------------------------->
   </nav>
 </header>
 
