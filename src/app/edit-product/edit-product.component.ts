@@ -15,13 +15,12 @@ export class EditProductComponent implements OnInit {
   productId: number = 0;
 
   product: Product = {
-    ProductId: 0,
-    name: '',
-    description: '',
-    price: 0,
-    CategoryId: 0,
-    IsAvailable: true,
-    ProductImage: [],
+    id: 0,
+  title: '',
+  price: 0,
+  description: '',
+  category: '',
+  image: '',
   };
 
   categories: any[] = [];

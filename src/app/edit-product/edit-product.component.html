@@ -3,7 +3,7 @@
   <form (submit)="onUpdate()" class="row g-3">
     <div class="col-md-6">
       <label class="form-label">Product Name</label>
-      <input type="text" class="form-control" [(ngModel)]="product.name" name="name" required />
+      <input type="text" class="form-control" [(ngModel)]="product.title" name="name" required />
     </div>
 
     <div class="col-md-6">
@@ -16,20 +16,20 @@
       <textarea class="form-control" [(ngModel)]="product.description" name="description"></textarea>
     </div>
 
-    <div class="col-md-6">
+    <!-- <div class="col-md-6">
       <label class="form-label">Category</label>
       <select class="form-select" [(ngModel)]="product.CategoryId" name="categoryId" required>
         <option *ngFor="let cat of categories" [value]="cat.categoryId">{{ cat.name }}</option>
       </select>
-    </div>
+    </div> -->
 
-    <div class="col-md-6">
+    <!-- <div class="col-md-6">
       <label class="form-label">Availability</label>
       <select class="form-select" [(ngModel)]="product.IsAvailable" name="isAvailable">
         <option [value]="true">Available</option>
         <option [value]="false">Unavailable</option>
       </select>
-    </div>
+    </div> -->
 
     <div class="col-12">
       <button class="btn btn-primary">Update Product</button>
