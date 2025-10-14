@@ -1,0 +1,18 @@
+<div *ngIf="product" class="checkout-container">
+      <div class="checkout-card">
+        <h2 class="checkout-title">Checkout</h2>
+        <div class="product-details">
+          <p class="product-info">You are about to purchase: <strong>{{ product.title }}</strong></p>
+          <p class="product-info">Price: <strong>\${{ product.price }}</strong></p>
+        </div>
+        
+        <div class="quantity-section">
+          <label class="quantity-label">Quantity:</label>
+          <input type="number" class="quantity-input" [(ngModel)]="quantity" min="1" />
+        </div>
+        
+        <button class="order-btn" (click)="placeOrder()">
+          Place Order
+        </button>
+      </div>
+    </div>

@@ -61,7 +61,7 @@ export class LoginPageComponent
     this.authService.Login(loginData, this.rememberMe).subscribe({
       next: (res) => {
         alert('Login Successful!');// Save token or user details to localStorage if needed
-        localStorage.setItem('user', JSON.stringify(this.Login.Email));
+        //localStorage.setItem('user', JSON.stringify(this.Login.Email));
         this.router.navigate(['/home']); // Navigate to home page after successful login
       },
       error: (err) => {

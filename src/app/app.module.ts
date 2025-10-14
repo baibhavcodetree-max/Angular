@@ -17,6 +17,9 @@ import { SellerDashboardComponent } from './seller-dashboard/seller-dashboard.co
 import { AddRetailerComponent } from './add-retailer/add-retailer.component';
 import { RetailerInterfaceComponent } from './retailer-interface/retailer-interface.component';
 import { ChatComponent } from './chat/chat.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { CartComponent } from './cart/cart.component';
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { ChatComponent } from './chat/chat.component';
     SellerDashboardComponent,
     AddRetailerComponent,
     RetailerInterfaceComponent,
-    ChatComponent
+    ChatComponent,
+    CheckoutComponent,
+    CartComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,  

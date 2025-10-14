@@ -1,0 +1,36 @@
+<!-- checkout.component.html -->
+<div class="checkout-container">
+  <h2>Checkout</h2>
+
+  <form (ngSubmit)="onSubmit()" #checkoutForm="ngForm">
+    <!-- Delivery Details -->
+    <div class="form-section">
+      <h3>Delivery Address</h3>
+      <input type="text" placeholder="Full Name" [(ngModel)]="order.fullName" name="fullName" required>
+      <input type="text" placeholder="Address" [(ngModel)]="order.address" name="address" required>
+      <input type="text" placeholder="City" [(ngModel)]="order.city" name="city" required>
+      <input type="text" placeholder="Pincode" [(ngModel)]="order.pincode" name="pincode" required>
+      <input type="text" placeholder="Phone Number" [(ngModel)]="order.phone" name="phone" required>
+    </div>
+
+    <!-- Payment Method -->
+    <div class="form-section">
+      <h3>Payment Options</h3>
+
+      <label>
+        <input type="radio" name="paymentMethod" [(ngModel)]="order.paymentMethod" value="gpay" required>
+        Google Pay
+      </label>
+      <label>
+        <input type="radio" name="paymentMethod" [(ngModel)]="order.paymentMethod" value="cod" required>
+        Cash on Delivery
+      </label>
+      <label>
+        <input type="radio" name="paymentMethod" [(ngModel)]="order.paymentMethod" value="card" required>
+        Credit/Debit Card
+      </label>
+    </div>
+
+    <button type="submit" class="btn">Proceed to Pay</button>
+  </form>
+</div>

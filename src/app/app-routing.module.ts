@@ -12,6 +12,9 @@ import { RetailerRegisterComponent } from './retailer-register/retailer-register
 import { AddRetailerComponent } from './add-retailer/add-retailer.component';
 import { RetailerInterfaceComponent } from './retailer-interface/retailer-interface.component';
 import { ChatComponent } from './chat/chat.component';
+import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
   {path:'products',component:ProductListComponent, canActivate: [AuthGuard]}, // Add AuthGuard here if needed
@@ -21,9 +24,12 @@ const routes: Routes = [
   {path: 'home', component: EcommerceHomepageComponent,canActivate: [AuthGuard]}, // Add AuthGuard here if needed
   {path: 'edit-product/:id', component: EditProductComponent, canActivate: [retailerGuard]}, // Add AuthGuard here if needed
   {path: 'retailer-interface', component: RetailerInterfaceComponent, canActivate:[retailerGuard]}, // Assuming this is the retailer registration page
+  {path: 'cart', component: CartComponent, canActivate:[AuthGuard]}, // Assuming this is the cart page
   {path: 'add-retailer', component: AddRetailerComponent, canActivate:[AuthGuard]}, // Assuming this is the retailer registration page
   {path: 'retailer-login', component: RetailerRegisterComponent, canActivate:[AuthGuard]}, // Assuming this is the retailer login page
+  {path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard]}, // Add AuthGuard here if needed
   {path: 'chat', component: ChatComponent, canActivate: [AuthGuard]}, // Add AuthGuard here if needed
+  {path: 'orders', component: OrdersComponent, canActivate: [AuthGuard]}, // Add AuthGuard here if needed
   { path: '', redirectTo: 'login-page', pathMatch: 'full' }
 ];
 

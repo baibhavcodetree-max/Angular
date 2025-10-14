@@ -1,0 +1,25 @@
+<div class="orders-container" >
+  <h2 class="title">My Orders</h2>
+
+  <div *ngIf="orders.length === 0" class="empty">
+    <p>No orders found 😅</p>
+  </div>
+
+  <div *ngFor="let order of orders" class="order-card">
+    <div class="order-left">
+      <img [src]="order.product.productImages[0]?.imageUrl || 'assets/placeholder.png'" alt="Product">
+    </div>
+
+    <div class="order-details">
+      <h3>{{ order.productName }}</h3>
+      <p><strong>Quantity:</strong> {{ order.quantity }}</p>
+      <p><strong>Total:</strong> ₹{{ order.totalPrice }}</p>
+      <p><strong>Status:</strong> 
+        <span [ngClass]="order.status.toLowerCase()">{{ order.status }}</span>
+      </p>
+      <p><strong>Delivery:</strong> {{ order.expectedDeliveryDate | date }}</p>
+      <p><strong>Payment:</strong> {{ order.paymentGateway }}</p>
+    </div>
+  </div>
+</div>
+
