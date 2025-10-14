@@ -3,7 +3,7 @@ import {  Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CheckoutserviceService } from '../services/checkoutservice.service';
 import { AuthService } from '../services/auth.service';
-import swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-checkout',
@@ -51,7 +51,11 @@ export class CheckoutComponent {
   onSubmit() {
 
     if(!this.product){
-      alert('No product found for checkout.');
+     Swal.fire({
+          title: 'Error!',
+          text: 'No product found for checkout.',
+          icon: 'error'
+      });
       return;
     }
 
@@ -76,8 +80,9 @@ export class CheckoutComponent {
         // Step 2: Handle payment after order creation
         if (this.order.paymentMethod === 'gpay') {
           this.redirectToGPay(response.totalAmount || this.product.totalAmount); // Pass amount to GPay
-        } else if (this.order.paymentMethod === 'cod') {
-         swal.fire({
+        } 
+        else if (this.order.paymentMethod === 'cod') {
+          Swal.fire({
             title: '🎉 Order Placed!',
             html: `
               <p>${response.message}</p>
@@ -94,14 +99,15 @@ export class CheckoutComponent {
             this.router.navigate(['/orders']);
           });
           this.router.navigate(['/order-confirmation']);
-        } else {
+        } 
+        else {
           alert('Proceeding to card payment (not integrated yet)');
         }
       },
 
       error: (error) => {
         console.error('Error placing order', error);
-        swal.fire({
+          Swal.fire({
             title: '❌ Failed!',
             text: 'Something went wrong while placing the order. Please try again.',
             icon: 'error',
@@ -112,10 +118,10 @@ export class CheckoutComponent {
     });
   }
 
-    redirectToGPay(amount: number) {
+  redirectToGPay(amount: number) {
       // ✅ This is how you can trigger Google Pay UPI intent
       const upiLink = `upi://pay?pa=merchant@okaxis&pn=EcomStore&am=${this.product.totalamount}&cu=INR&tn=EcomPurchase`;
       window.location.href = upiLink;
-    }
+  }
 
 }
