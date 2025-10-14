@@ -81,7 +81,7 @@ export class CheckoutComponent {
         if (this.order.paymentMethod === 'gpay') {
           this.redirectToGPay(response.totalAmount || this.product.totalAmount); // Pass amount to GPay
         } 
-        else if (this.order.paymentMethod === 'cod') {
+        else if (this.order.paymentMethod === 'Cash on Delivery') {
           Swal.fire({
             title: '🎉 Order Placed!',
             html: `
@@ -95,7 +95,8 @@ export class CheckoutComponent {
             confirmButtonColor: '#3085d6',
             background: '#f9f9f9',
             backdrop: `rgba(0,0,0,0.4)`
-          }).then(() => {
+          })
+          .then(() => {
             this.router.navigate(['/orders']);
           });
           this.router.navigate(['/order-confirmation']);
