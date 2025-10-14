@@ -1,10 +1,11 @@
-<div *ngIf="Product as p">
-  <img *ngIf="p.ProductImage?.length"
-       [src]="p.ProductImage?.[0]?.ImageUrl"
-       [alt]="p.name"
-       class="product-image">
-
-  <h2>{{ p.name }}</h2>
-  <p>{{ p.description }}</p>
-  <h4>₹{{ p.price }}</h4>
+<div *ngIf="product" class="product-detail">
+  <img [src]="product.image" alt="{{ product.title }}" class="detail-img" />
+  <div class="detail-info">
+    <h2>{{ product.title }}</h2>
+    <p class="price">₹ {{ product.price }}</p>
+    <p>{{ product.description }}</p>
+    <p><strong>Category:</strong> {{ product.category }}</p>
+    
+    <button class="btn btn-success" (click)="buynow(product)">Add To Cart</button>
+  </div>
 </div>

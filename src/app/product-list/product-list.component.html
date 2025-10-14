@@ -1,22 +1,11 @@
-<div class="container mt-4">
-  <h2>Available Products</h2>
-  <div class="row">
-    <div class="col-md-4 mb-3" *ngFor="let product of Products">
-      <div class="card h-100">
-        <img
-          *ngIf="product.ProductImage?.length"
-          [src]="'https://localhost:7218' + (product.ProductImage && product.ProductImage[0].ImageUrl ? product.ProductImage[0].ImageUrl : '')"
-          class="card-img-top"
-          alt="Product Image"
-        />
-        <div class="card-body">
-          <h5 class="card-title">{{ product.name }}</h5>
-          <p class="card-text">{{ product.description }}</p>
-          <p class="fw-bold">₹ {{ product.price }}</p>
-        </div>
-        <div class="d-flex justify-content-between align-items-center p-3">
-          <button class="btn btn-primary" (click)="editProduct(product.ProductId)">Edit</button>
-          <button class="btn btn-secondary" (click)="deleteProduct(product.ProductId)">Delete</button>
+<div class="row">
+  <div class="col-md-3 col-sm-6 mb-4" *ngFor="let product of Products">
+    <div class="card h-100 text-center">
+      <img [src]="product.image" class="card-img-top p-3" alt="{{product.title}}">
+      <div class="card-body">
+        <h6 class="card-title">{{ product.title }}</h6>
+        <p class="text-danger fw-bold">₹ {{ product.price }}</p>
+        <button class="btn btn-primary btn-sm" [routerLink]="['/product-detail', product.id]">Buy now</button>
       </div>
     </div>
   </div>

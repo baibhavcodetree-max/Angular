@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from '../models/product.model';
-import { ProductService } from '../services/product.service';
+import { ProductService} from '../services/product.service';
 
 @Component({
   selector: 'app-product-list',
@@ -11,13 +11,22 @@ import { ProductService } from '../services/product.service';
 })
 
 export class ProductListComponent implements OnInit {
+
   Products:Product[] = [];
+  isLoading: boolean = true;
+
   constructor(private productservice: ProductService, private router: Router) {}
 
-  ngOnInit(): void 
-  {
-    this.productservice.getAllProducts().subscribe(
-      res => {this.Products = res;
+  ngOnInit(): void {
+    this.productservice.getAllProducts().subscribe({
+      next:(data) => {
+        this.Products = data,
+        this.isLoading = false;
+      },
+      error:(err) => {
+        alert('Failed to load products' + err.message);
+        this.isLoading = false;
+      }
     });
   }
 
@@ -25,18 +34,22 @@ export class ProductListComponent implements OnInit {
     this.router.navigate(['/edit-product', productId]);
   }
 
-  deleteProduct(productId: number): void {
-    if(confirm('Are You sure you want to delete this product?'))
-    {
-      this.productservice.deleteProduct(productId).subscribe({
-        next:() =>{
-          alert('Product deleted.');
-          this.ngOnInit();
-        },
-        error:(err) => {
-          alert('delete failed' + err.message);
-        }
-      });
-    }
+  // deleteProduct(productId: number): void {
+  //   if(confirm('Are You sure you want to delete this product?'))
+  //   {
+  //     this.productservice.deleteProduct(productId).subscribe({
+  //       next:() =>{
+  //         alert('Product deleted.');
+  //         this.ngOnInit();
+  //       },
+  //       error:(err) => {
+  //         alert('delete failed' + err.message);
+  //       }
+  //     });
+  //   }
+  // }
+
+  viewProductDetails(productId: number): void {
+    this.router.navigate(['/product-details/', productId]);
   }
 }
