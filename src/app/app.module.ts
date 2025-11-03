@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { EcommerceHomepageComponent } from './ecommerce-homepage/ecommerce-homepage.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -20,6 +23,7 @@ import { ChatComponent } from './chat/chat.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CartComponent } from './cart/cart.component';
 import { OrdersComponent } from './orders/orders.component';
+import { SearchbarComponent } from './searchbar/searchbar.component';
 
 @NgModule({
   declarations: [
@@ -39,13 +43,17 @@ import { OrdersComponent } from './orders/orders.component';
     ChatComponent,
     CheckoutComponent,
     CartComponent,
-    OrdersComponent
+    OrdersComponent,
+    SearchbarComponent
   ],
   imports: [
-    BrowserModule,  
+    BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

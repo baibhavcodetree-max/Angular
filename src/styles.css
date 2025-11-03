@@ -512,4 +512,29 @@ form a{
   margin-bottom: 1rem;
 }
 
+app-header, app-searchbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
 
+app-searchbar {
+  top: 70px; /* height of header */
+  z-index: 999;
+}
+
+app-root {
+  margin-top: 130px;
+}
+
+.card {
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: scale(1.03);
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,17 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Product } from '../models/product.model';
 import { environment } from '../../environments/environment';
-
-// export interface Product {
-//   id: number;
-//   title: string;
-//   price: number;
-//   description: string;
-//   category: string;
-//   image: string;
-// }
 
 @Injectable({
   providedIn: 'root'
@@ -19,17 +10,15 @@ import { environment } from '../../environments/environment';
 
 export class ProductService {
 
-  private apiurl = 'https://fakestoreapi.com/products';
-  /*`${environment.apiUrl}/api/Product`;*/
+  private apiurl = 'https://api.escuelajs.co/api/v1/products';
+
+  
+
   constructor(private http : HttpClient) { }
 
   getAllProducts():Observable<Product[]> {
     return this.http.get<Product[]>(this.apiurl);
   }
-
-  // deleteProduct(productId: number): Observable<any> {
-  //   return this.http.delete(`${this.apiurl}/${productId}`);
-  // }
 
   getProductById(productId: number): Observable<Product> {
      return this.http.get<Product>(`${this.apiurl}/${productId}`);
@@ -37,6 +26,10 @@ export class ProductService {
 
   updateProduct(product: Product): Observable<Product> {
     return this.http.put<Product>(`${this.apiurl}/${product.id}`, product);
+  }
+
+  getProductRelatedByslug(slug: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiurl}/slug/${slug}/related`);
   }
 }
 

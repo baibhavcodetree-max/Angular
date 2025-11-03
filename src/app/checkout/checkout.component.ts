@@ -18,10 +18,10 @@ export class CheckoutComponent {
   product!: any;
   quantity = 1;
 
-  order = {
+   order = {
     userId: 0,
-    productId: 0,
     quantity: 1,
+    product: null as any, // 👈 यह पूरा प्रोडक्ट ऑब्जेक्ट भेजेगा
     fullName: '',
     address: '',
     city: '',
@@ -45,7 +45,6 @@ export class CheckoutComponent {
     }
 
     this.userId = this.auth.getUserId() ?? 0;
-    this.order.productId = this.product?.id || 0;
   }
 
   onSubmit() {
@@ -59,10 +58,10 @@ export class CheckoutComponent {
       return;
     }
 
-    this.order = {
+   this.order = {
       userId: this.userId,
-      productId: this.product.id,
       quantity: this.quantity,
+      product: this.product, // 👈 पूरा product object backend को भेजा गया
       fullName: this.order.fullName,
       address: this.order.address,
       city: this.order.city,
@@ -71,6 +70,7 @@ export class CheckoutComponent {
       paymentMethod: this.order.paymentMethod === 'gpay' ? 'GPay' : 'Cash on Delivery',
       deliveryAddress: `${this.order.address}, ${this.order.city}, ${this.order.pincode}`
     };
+
 
     // Step 1: Send order to backend
     this.checkoutservice.placeOrder(this.order).subscribe({
@@ -99,7 +99,6 @@ export class CheckoutComponent {
           .then(() => {
             this.router.navigate(['/orders']);
           });
-          this.router.navigate(['/order-confirmation']);
         } 
         else {
           alert('Proceeding to card payment (not integrated yet)');
