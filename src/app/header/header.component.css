@@ -53,11 +53,54 @@
   right: -10px;
 }
 
-.nav-item.dropdown:hover .dropdown-menu {
+/* Makes dropdown appear on hover */
+.account-dropdown .dropdown-menu-custom {
   display: block;
-  margin-top: 0;
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #fff;
+  width: 260px;
+  border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  padding: 12px 0;
+  transition: opacity 0.25s ease;
+  z-index: 999;
 }
 
-.nav-item.dropdown .dropdown-menu {
-  transition: 0.2s ease-in-out;
+.account-dropdown:hover .dropdown-menu-custom {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Group block spacing */
+.dropdown-section {
+  padding: 8px 18px;
+}
+
+/* Section Titles */
+.dropdown-section h6 {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+/* Links */
+.dropdown-item {
+  font-size: 14px;
+  padding: 6px 0;
+  display: block;
+  color: #111;
+}
+
+.dropdown-item:hover {
+  background: none;
+  color: #0077ff;
+}
+
+/* Divider spacing */
+.dropdown-menu-custom hr {
+  margin: 8px 0;
 }
