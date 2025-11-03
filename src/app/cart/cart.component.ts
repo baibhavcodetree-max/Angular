@@ -1,36 +1,43 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, signal, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms'
-import { HttpClient } from '@angular/common/http';
-import { Product } from '../models/product.model';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-cart',
   standalone: false,
   templateUrl: './cart.component.html',
-  styleUrl: './cart.component.css'
+  styleUrl: './cart.component.css',
+  providers: [CartService]
 })
 
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit{
 
-  productId!: number;
   product!: any;
-  // quantity: number=1;
-
-  constructor(public route: ActivatedRoute,private httpclient:HttpClient,public router:Router) {}
-
-  ngOnInit(): void {
-    const state = window.history.state;
-
-    if(state && state.Product) {
-      this.product = state.Product;
-      console.log('Product in cart:', this.product);
-    }
-  }
+  cartItems: any[] = [];
+  
+  constructor(public route: ActivatedRoute,public router:Router, public cart:CartService) {}
 
   quantity = signal(1);
+
+  ngOnInit(): void {
+    this.cartItems = this.cart.getCartItems();
+  }
+
+  removefromCart(id: number): void {
+    this.cart.removeFromCart(id);
+    this.cartItems = this.cart.getCartItems();
+  }
 
   placeOrder(){
     this.router.navigate(['/checkout'], { state: {Product: this.product} });
   }
+
+  getTotalPrice(): number {
+    return this.cartItems.reduce((sum, item) => {
+      const qty = item.quantity || 1;
+      return sum + item.price * qty;
+    }, 0);
+ }
+ 
 }  

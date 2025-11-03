@@ -1,11 +1,51 @@
 <div *ngIf="product" class="product-detail">
-  <img [src]="product.image" alt="{{ product.title }}" class="detail-img" />
+  <div class="image-slider-section">
+        <h2 class="text-xl font-bold mb-4">{{ product.title }}</h2>
+
+        <!-- मुख्य स्लाइडर रैपर -->
+        <div class="slider-wrapper">
+            <!-- मुख्य इमेज: यह getCurrentImageUrl() से वर्तमान इमेज URL लेता है -->
+            <img [src]="getCurrentImageUrl()" [alt]="product.title" class="main-product-image">
+            
+            <!-- पिछली इमेज पर जाने के लिए बटन -->
+            <button 
+                (click)="prevImage()" 
+                class="slider-btn prev-btn" 
+                aria-label="पिछली इमेज"
+            >
+                &lt;
+            </button>
+
+            <!-- अगली इमेज पर जाने के लिए बटन -->
+            <button 
+                (click)="nextImage()" 
+                class="slider-btn next-btn" 
+                aria-label="अगली इमेज"
+            >
+                &gt;
+            </button>
+        </div>
+
+        <!-- इंडिकेटर और थंबनेल बार -->
+        <div class="thumbnail-indicator-bar">
+            <!-- सभी इमेजेस के लिए थंबनेल दिखाता है -->
+            <img 
+                *ngFor="let url of product.images; let i = index"
+                [src]="url" 
+                (click)="currentIndex = i" 
+                [class.active]="i === currentIndex"
+                alt="Thumbnail {{ i + 1 }}" 
+                class="thumbnail-image"
+            >
+        </div>
+  </div>
+
   <div class="detail-info">
     <h2>{{ product.title }}</h2>
     <p class="price">₹ {{ product.price }}</p>
     <p>{{ product.description }}</p>
-    <p><strong>Category:</strong> {{ product.category }}</p>
+    <p><strong>Category:</strong> {{ product.category.slug }}</p>
     
-    <button class="btn btn-success" (click)="buynow(product)">Add To Cart</button>
+    <button class="btn btn-success" [routerLink]="['/cart']" (click)="buynow(product)">Add To Cart</button>
   </div>
 </div>

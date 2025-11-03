@@ -1,7 +1,9 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { Product } from '../models/product.model';
 import { ProductService} from '../services/product.service';
+import { CartService } from '../services/cart.service';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 
 @Component({
   selector: 'app-product-list',
@@ -12,10 +14,11 @@ import { ProductService} from '../services/product.service';
 
 export class ProductListComponent implements OnInit {
 
-  Products:Product[] = [];
+  @Input () Product:any
+  Products:any[] = [];
   isLoading: boolean = true;
 
-  constructor(private productservice: ProductService, private router: Router) {}
+  constructor(private productservice: ProductService, private router: Router, private cart:CartService) {}
 
   ngOnInit(): void {
     this.productservice.getAllProducts().subscribe({
@@ -34,22 +37,13 @@ export class ProductListComponent implements OnInit {
     this.router.navigate(['/edit-product', productId]);
   }
 
-  // deleteProduct(productId: number): void {
-  //   if(confirm('Are You sure you want to delete this product?'))
-  //   {
-  //     this.productservice.deleteProduct(productId).subscribe({
-  //       next:() =>{
-  //         alert('Product deleted.');
-  //         this.ngOnInit();
-  //       },
-  //       error:(err) => {
-  //         alert('delete failed' + err.message);
-  //       }
-  //     });
-  //   }
-  // }
-
   viewProductDetails(productId: number): void {
     this.router.navigate(['/product-details/', productId]);
   }
-}
+
+  addToCart(product: any): void {
+    this.cart.addToCart({...product, quantity: 1 });
+    alert('Product added to cart!');
+  }
+
+  }

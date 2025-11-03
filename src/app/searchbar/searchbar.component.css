@@ -1,0 +1,47 @@
+:host {
+  display: block;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+
+.searchbar-container {
+   display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.category-select {
+  border: none;
+  background: #f3f3f3;
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  outline: none;
+}
+
+.searchbar-container input {
+  flex: 1;
+  height: 36px;
+  border: 1px solid #ccc;
+  padding: 0 10px;
+  border-radius: 5px 0 0 5px;
+}
+
+.searchbar-container button {
+ background-color: orange;
+  border: none;
+  padding: 0 15px;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+.searchbar-container button:hover {
+  background-color: #f3a847;
+}
+
+.searchbar-container i {
+  color: #333;
+  font-size: 18px;
+}

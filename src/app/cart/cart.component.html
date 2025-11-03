@@ -1,18 +1,29 @@
-<div *ngIf="product" class="checkout-container">
-      <div class="checkout-card">
-        <h2 class="checkout-title">Checkout</h2>
-        <div class="product-details">
-          <p class="product-info">You are about to purchase: <strong>{{ product.title }}</strong></p>
-          <p class="product-info">Price: <strong>\${{ product.price }}</strong></p>
+<div class="checkout-container">
+      <div class="checkout-card shadow">
+        <h2 class="checkout-title mb-4">Your Cart</h2>
+
+        <div *ngIf="cartItems.length === 0" class="empty-cart text-center py-5">
+          <p>No items in your cart.</p>
         </div>
-        
-        <div class="quantity-section">
-          <label class="quantity-label">Quantity:</label>
-          <input type="number" class="quantity-input" [(ngModel)]="quantity" min="1" />
+
+        <div *ngFor="let item of cartItems" class="cart-item mb-4 p-3 border rounded d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center justify-content-between">
+              <img [src]="item.images[0]" alt="{{ item.title }}" class="cart-item-img me-3" />
+               <div>
+                  <h5 class="mb-1">{{ item.title }}</h5>
+                  <p class="text-muted mb-0">₹ {{ item.price }}</p>
+                </div>
+              <button class="btn btn-outline-danger btn-sm" (click)="removefromCart(item.id)">✕</button>
+            </div> 
+            <div class="d-flex align-items-center gap-3">
+              <div class="quantity-section">
+                <label class="text-muted small">Quantity:</label>
+                <input type="number" class="form-control text-center" [(ngModel)]="quantity" min="1" />
+              </div>
+            </div>
         </div>
-        
-        <button class="order-btn" (click)="placeOrder()">
-          Place Order
-        </button>
-      </div>
+        <div class="cart-summary mt-4 border-top pt-3 text-end">
+            <h5 class="fw-bold mb-3">Total: ₹ {{ getTotalPrice() }}</h5>
+            <button class="btn btn-dark btn-lg rounded-pill" (click)="placeOrder()">Place Order</button>
+        </div>
     </div>
