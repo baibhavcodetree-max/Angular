@@ -52,3 +52,12 @@
   top: -6px;
   right: -10px;
 }
+
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0;
+}
+
+.nav-item.dropdown .dropdown-menu {
+  transition: 0.2s ease-in-out;
+}
