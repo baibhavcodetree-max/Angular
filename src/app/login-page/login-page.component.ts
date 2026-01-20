@@ -3,6 +3,7 @@ import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { LoginDTO } from '../models/login-dto';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 interface user {
   username: string;
@@ -47,7 +48,7 @@ export class LoginPageComponent
     
     this.authService.Register(this.user).subscribe({
       next: (res) => {
-        alert('Registration Successful!');
+       Swal.fire("Registration Successful");
         this.isLogin = true; // Switch to login form after successful registration
       },
       error: (err) => {
@@ -60,12 +61,18 @@ export class LoginPageComponent
     const loginData: LoginDTO = { Email: this.Login.Email, Password: this.Login.Password };
     this.authService.Login(loginData, this.rememberMe).subscribe({
       next: (res) => {
-        alert('Login Successful!');// Save token or user details to localStorage if needed
+        Swal.fire({
+          title:"Login Successful",
+          icon:"success"
+        });// Save token or user details to localStorage if needed
         //localStorage.setItem('user', JSON.stringify(this.Login.Email));
         this.router.navigate(['/home']); // Navigate to home page after successful login
       },
       error: (err) => {
-        alert('Login Failed: ' + err.error);
+       Swal.fire({
+        icon:"error",
+        title:"Login Failed"
+       })
       }
     });
   }

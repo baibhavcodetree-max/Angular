@@ -463,6 +463,9 @@ form a{
     .row{
         text-align: center;
     }
+    .row img{
+        width: 100%;
+    }
     .col-2 , .col-3, .col-4{
         flex-basis: 100%;
 
