@@ -1,7 +1,7 @@
 {
   "version": 2,
   "buildCommand": "ng build --configuration production",
-  "outputDirectory": "dist/login-page-app/browser",
+  "outputDirectory": "dist/login-page-app",
   "rewrites": [
     {
       "source": "/(.*)",
