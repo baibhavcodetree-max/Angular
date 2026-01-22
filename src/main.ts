@@ -1,6 +1,6 @@
 import { platformBrowser } from '@angular/platform-browser';
 import { AppModule } from './app/app.module';
-import {register} from 'swiper/element'; 
+import {register} from 'swiper/element/bundle'; 
 
 register();
 
