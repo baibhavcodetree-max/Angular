@@ -1,5 +1,7 @@
 .search-group {
   border: 1px solid #ddd;
+  max-width: 420px;
+  width: 100%;
   border-radius: 25px;
   overflow: hidden;
   height: 38px;
