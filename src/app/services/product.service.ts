@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment';
 
 export class ProductService {
 
-  private apiurl = 'https://api.escuelajs.co/api/v1/products';
+  private apiurl = `${environment.apiUrl}/api/Product`;
 
   
 
@@ -18,6 +18,10 @@ export class ProductService {
 
   getAllProducts():Observable<Product[]> {
     return this.http.get<Product[]>(this.apiurl);
+  }
+
+  getProductsByCategories(categoryId:string):Observable<Product[]>{
+    return this.http.get<Product[]>(`${this.apiurl}/${categoryId}`)
   }
 
   getProductById(productId: number): Observable<Product> {
