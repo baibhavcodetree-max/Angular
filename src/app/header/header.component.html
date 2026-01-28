@@ -2,40 +2,48 @@
   <div class="container-fluid">
 
     <!-- LOGO -->
-    <a class="navbar-brand d-flex align-items-center" routerLink="/home">
+    <a class="navbar-brand me-0" routerLink="/home">
       <img src="assets/images/logo.png" alt="Logo" height="35">
     </a>
 
     <!-- DROPDOWN + SEARCH -->
-    <form class="d-flex align-items-center flex-grow-1 mx-3 search-group">
-      <select class="form-select category-select">
-        <option>All</option>
-        <option>Men</option>
-        <option>Women</option>
-        <option>Kids</option>
-      </select>
-
+    <form class="d-flex align-items-center ms-0 me-3 search-group">
       <input class="form-control search-input" type="search" placeholder="Search products...">
-
-      <button class="btn search-btn" type="submit">
-        
-      </button>
     </form>
 
-    <!-- NAV MENU -->
-    <div class="collapse navbar-collapse justify-content-center">
-      <ul class="navbar-nav mb-2 mb-lg-0 gap-3">
-        <li class="nav-item"><a routerLink="/home" class="nav-link">Home</a></li>
-        <li class="nav-item"><a routerLink="/products" class="nav-link">Products</a></li>
-        <li class="nav-item"><a routerLink="/about" class="nav-link">About</a></li>
-        <li class="nav-item"><a routerLink="/contact" class="nav-link">Contact</a></li>
+    <div class="d-flex align-items-center">
+      <!-- LEFT: NAV LINKS -->
+      <ul class="navbar-nav d-flex align-items-center gap-3 me-3">
+        <li class="nav-item">
+          <a routerLink="/home" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item dropdown account-dropdown" (mouseenter)="showProductsDropdown = true"
+          (mouseleave)="showProductsDropdown = false">
+          <a class="nav-link">Products</a>
 
-        <!-- ACCOUNT DROPDOWN -->
-        <li class="nav-item dropdown account-dropdown"
-            (mouseenter)="showDropdown = true"
-            (mouseleave)="showDropdown = false">
+          <div class="dropdown-menu-custom" *ngIf="showProductsDropdown">
+            <div class="dropdown-section" *ngFor="let category of categories">
+              <a class="dropdown-item" [routerLink]="['/products', category.categoryId]"
+                (click)="showProductsDropdown = false">
+                {{ category.name }}
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/about" class="nav-link">About</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/contact" class="nav-link">Contact</a>
+        </li>
 
-          <a class="nav-link dropdown-toggle">Account & Lists</a>
+        <!-- ACCOUNT -->
+        <li class="nav-item dropdown account-dropdown" (mouseenter)="showDropdown = true"
+          (mouseleave)="showDropdown = false">
+
+          <a class="nav-link">
+            <i class="bi bi-person"></i>
+          </a>
 
           <div class="dropdown-menu-custom" *ngIf="showDropdown">
             <div class="dropdown-section">
@@ -54,23 +62,28 @@
               <a class="dropdown-item" *ngIf="!isRetailer" routerLink="/retailer-login">Register as Seller</a>
             </div>
           </div>
-
         </li>
-          <li>
-           <a routerLink="/chat"><i class="bi bi-chat-left-text"></i></a>
-         </li>
       </ul>
+      <!-- RIGHT: ICONS + LOGOUT -->
+      <div class="d-flex align-items-center gap-3">
+
+        <a routerLink="/chat" class="nav-icon">
+          <i class="bi bi-chat-left-text"></i>
+        </a>
+
+        <a routerLink="/cart" class="position-relative nav-icon">
+          <i class="bi bi-cart2 fs-5"></i>
+          <span class="cart-count">{{ cartCount }}</span>
+        </a>
+
+        <button class="btn btn-outline-danger btn-sm" (click)="onLogOut()">
+          Logout
+        </button>
+
+      </div>
+
     </div>
 
-    <!-- CART + LOGOUT -->
-    <div class="d-flex align-items-center gap-3">
-      <a routerLink="/cart" class="position-relative cart">
-        <i class="bi bi-cart2 fs-5"></i>
-        <span class="cart-count">{{ cartCount }}</span>
-      </a>
-
-      <button class="btn btn-danger btn-sm" (click)="onLogOut()">Logout</button>
-    </div>
 
   </div>
 </nav>
