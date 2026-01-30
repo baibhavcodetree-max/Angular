@@ -17,7 +17,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
-  {path:'products',component:ProductListComponent, canActivate: [AuthGuard]}, // Add AuthGuard here if needed
+  {path:'products/:category',component:ProductListComponent, canActivate: [AuthGuard]}, // Add AuthGuard here if needed
   {path: 'product-detail/:id', component: ProductDetailComponent, canActivate: [AuthGuard]}, // Add AuthGuard here if needed
   {path:'add-product', component: AddProductComponent, canActivate: [retailerGuard]}, // Add AuthGuard here if needed
   {path: 'login-page', component: LoginPageComponent},

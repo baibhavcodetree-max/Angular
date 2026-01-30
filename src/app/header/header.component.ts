@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { SearchbarComponent } from '../searchbar/searchbar.component';
 import { AuthService } from '../services/auth.service';
 import { CartService } from '../services/cart.service';
+import { CategoryService } from '../services/category.service';
+import { ProductListComponent } from '../product-list/product-list.component';
 import { Router } from '@angular/router';
 
 
@@ -14,23 +16,31 @@ import { Router } from '@angular/router';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit {
+  showProductsDropdown: boolean = false;
   showDropdown = false;
-  isRetailer = false; // Default value, can be set based on user role
-  isAuthenticated = false; // Default value, can be set based on authentication status
-  cartCount = 0;  
+  isRetailer = false; 
+  isAuthenticated = false; 
+  cartCount = 0; 
+  categories: any[] = []; 
   
- constructor(private authService: AuthService, private router:Router, private cartService: CartService) { }
+  constructor(private authService: AuthService, private router:Router, private cartService: CartService,private Category:CategoryService) { }
 
- ngOnInit(): void {
-   this.isRetailer = localStorage.getItem('isRetailer') === 'true';
+  ngOnInit(): void {
+    this.isRetailer = localStorage.getItem('isRetailer') === 'true';
 
-   this.cartService.cartCount$.subscribe(count => {
+    this.cartService.cartCount$.subscribe(count => {
       this.cartCount = count;
+    });
+
+    this.Category.getAllCategories().subscribe({
+        next:(data) => {
+          this.categories = data;
+          console.log(data)
+        }
     });
   }
 
   onLogOut(): void {
-    this.authService.logout(); // Call the logout method from AuthService
-    // Optionally, you can add any additional logic here after logging out
+    this.authService.logout(); 
   }
 }
