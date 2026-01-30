@@ -25,13 +25,14 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.ActivatedRoute.paramMap.subscribe(params => {
-      this.categoryId = Number(params.get('category')!);
+      this.categoryId = Number(params.get('id')!);
+      console.log(this.categoryId);
       this.loadProductsbyslug(this.categoryId)
     })
   }
 
   loadProductsbyslug(categoryId:number){
-     this.Product.getProductsByCategories(categoryId).subscribe({
+     this.productservice.getProductsByCategories(categoryId).subscribe({
       next:(data:any[]) => {
         this.Products = data;
         console.log(this.Products)

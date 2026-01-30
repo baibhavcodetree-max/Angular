@@ -20,8 +20,9 @@ export class ProductService {
     return this.http.get<Product[]>(this.apiurl);
   }
 
-  getProductsByCategories(categoryId:string):Observable<Product[]>{
-    return this.http.get<Product[]>(`${this.apiurl}/${categoryId}`)
+  getProductsByCategories(categoryId:number):Observable<Product[]>{
+    debugger
+    return this.http.get<Product[]>(`${this.apiurl}/category/${categoryId}`)
   }
 
   getProductById(productId: number): Observable<Product> {
